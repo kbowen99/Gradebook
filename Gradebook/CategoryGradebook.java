@@ -47,7 +47,25 @@ public class CategoryGradebook implements Gradebook {
     // If your task can be made easier by adding private helper methods to this class,
     // then be sure that they are thoroughly documented with comments. 
     public double calculateGrade() {
-        return 0.0;
+        double[] catPoss = new double[myCategories.length];
+        double[] catEarned = new double[myCategories.length];
+        double[] catScore = new double[myCategories.length];
+        double score = 0.0;
+        for(int cat = 0; cat < myCategories.length; cat++){
+            for(int sign = 0; sign < myGrades.size(); sign++){
+                if(((double)findCategory(myGrades.get(sign))) == cat){
+                    catPoss[cat] += myGrades.get(sign).getPointsPossible();
+                    catEarned[cat] += myGrades.get(sign).getPointsEarned();
+                }
+            }
+        }
+        
+        for(int cat = 0; cat < myCategories.length; cat++){
+            catScore[cat] = catEarned[cat] / catPoss[cat];
+            score += catScore[cat] * ((double)myWeights[cat]);
+        }
+        
+        return score;
     }
     
     // findCategory private accessor method
@@ -60,10 +78,14 @@ public class CategoryGradebook implements Gradebook {
         int i;
         CategoryAssignment catAssign = (CategoryAssignment)assign;
         
-        for (i = 0; i < myCategories.length; i++) {
-            if (catAssign.getCategoryName().equals(myCategories[i])) {
-                return i;
+        try{
+            for (i = 0; i < myCategories.length; i++) {
+                if (catAssign.getCategoryName().equals(myCategories[i])) {
+                    return i;
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Tisnt an item");
         }
         
         // the following line is present just so that this method compiles; 

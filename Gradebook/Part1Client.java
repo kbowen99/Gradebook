@@ -31,8 +31,8 @@ public class Part1Client {
         // this should print 9
         System.out.println("Points earned = " + assign.getPointsEarned());
         
-        /*
-        ** Uncomment this code after the Assignment class is tested above
+        //*
+        //** Uncomment this code after the Assignment class is tested above
         TotalPointsGradebook gradebook = new TotalPointsGradebook();
         gradebook.add(assign);
         gradebook.add(new Assignment("Lab 2", 10, 10));
@@ -48,6 +48,6 @@ public class Part1Client {
         // The grade printed by this line should be approximately 88.095238
         // If you get a different value, then your calculateGrade method has an error
         System.out.println("Grade = " + gradebook.calculateGrade());        
-        */
+        
     }
 }
